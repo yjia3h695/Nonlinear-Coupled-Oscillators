@@ -1,0 +1,11 @@
+function freq=get_freq(DATA);
+p1=DATA(:,2);
+p2=DATA(:,3);
+ssdataa=p1-mean(p1);ssdatab=p2-mean(p2);
+Ha=hilbert(ssdataa);Hb=hilbert(ssdatab);
+pa=unwrap(angle((Ha)));pb=unwrap(angle((Hb)));
+t=[1:length(pa)]./daq;
+y1=polyfit(t,pa,1);
+freq=y1(1)./2./pi;
+y2=polyfit(t,pb,1);
+freq2=y2(1)./2./pi;
