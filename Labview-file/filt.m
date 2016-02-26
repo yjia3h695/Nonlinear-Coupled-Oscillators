@@ -1,0 +1,13 @@
+cr=60;
+Rind=1000000;
+dar=1000;
+data=load('cv_10-11-23_1723.lvm');
+sdata=sgolayfilt(data,2,41);
+scurr=sdata(:,1)*cr/3;
+nr=size(scurr);
+t=[1:nr]'/dar;
+pote=data(:,2);
+F=polyfit(t,pote,1);
+spote=F(1)*t+F(2);
+subplot(2,1,1);
+h=plot(spote,scurr(:,1),'b-');
