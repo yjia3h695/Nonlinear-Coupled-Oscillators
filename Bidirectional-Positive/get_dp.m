@@ -1,0 +1,11 @@
+function dp=get_dp(DATA);
+p1=DATA(:,2);
+p2=DATA(:,3);
+ssdataa=p1-mean(p1);ssdatab=p2-mean(p2);
+Ha=hilbert(ssdataa);Hb=hilbert(ssdatab);
+pa=unwrap(angle((Ha)));pb=unwrap(angle((Hb)));
+na=polyfit(t,pa,1);
+freqa=na(1)/2./pi;
+nb=polyfit(t,pb,1);
+freqb=nb(1)/2./pi;
+dp=freqa-freqb;
